@@ -1,0 +1,15 @@
+.background{
+    background-color: #F4FCFB;
+    min-height: 100px;
+    border-radius: 5px;
+}
+
+.input{
+    width: 50%;
+    border-radius: 5px;
+}
+
+.customButton{
+    background-color: #DCFFEC;
+    color: #71BA58;
+}
