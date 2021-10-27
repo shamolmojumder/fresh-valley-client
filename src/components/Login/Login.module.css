@@ -1,0 +1,25 @@
+.container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.signinArea{
+    border: 1px solid gray;
+    height: auto;
+    width: 50%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.submit{
+    border-radius: 4px;
+    background-color: #71BA58;
+    padding: 10px 22px;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}

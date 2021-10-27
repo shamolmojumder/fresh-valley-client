@@ -1,0 +1,19 @@
+.buynow{
+    border-radius:4px;
+    background-color:#71BA58;
+    padding:10px 22px;
+    color:#fff;
+    outline:none;
+    border:none;
+    cursor:pointer;
+    -webkit-transition:all 0.2s ease-in-out;
+    transition:all 0.2s ease-in-out;
+    -webkit-text-decoration:none;
+    text-decoration:none;
+    margin-left:24px;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-around;
+}
