@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from "react";
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,6 +16,8 @@ import styles from './Admin.module.css'
 import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { useForm } from "react-hook-form";
+import axios from 'axios';
 
 const drawerWidth = 240;
 
@@ -23,6 +25,41 @@ const Input = styled('input')({
     display: 'none',
   });
 const Admin = () => {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const onSubmit = data => {
+    const eventData={
+      name:data.name,
+      price:data.price,
+      imageUrl:imageUrl
+    }
+    const url=`http://localhost:5055/addProduct`
+    console.log(eventData)
+    fetch(url,{
+      method:"POST",
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body:JSON.stringify(eventData)
+    })
+    .then(res=>console.log("server side response"))
+  }
+  
+  // console.log(watch("example")); // watch input value by passing the name of it
+  const handleImageUpload=event=>{
+    console.log(event.target.files[0]);
+    const imageData=new FormData();
+    imageData.set('key','62aa36c1f5b1eab377e390270ea79bdc');
+    imageData.append('image',event.target.files[0])
+
+    axios.post('https://api.imgbb.com/1/upload', imageData)
+    .then(function (response) {
+      setImageUrl(response.data.data.display_url);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+  const [imageUrl,setImageUrl]=useState(null)
     return (
         <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -67,7 +104,7 @@ const Admin = () => {
         sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
       >
         <Toolbar />
-            <div className={styles.background}>
+            {/* <div className={styles.background}>
                 <h5>Product Name</h5>
                 <input className={styles.input} type="text" placeholder="Name" />
 
@@ -86,7 +123,20 @@ const Admin = () => {
                         </Button>
                     </label>
                 </Stack>
-            </div>
+            </div> */}
+              <div className="form">
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <input name="name"  defaultValue="" placeholder="product name" {...register("name")} />
+                <br />
+                <input name="price" defaultValue="" placeholder="price" {...register("price")}/>
+                <br />
+                <input type="file" name="" id="" onChange={handleImageUpload} />
+                <br />
+                {errors.exampleRequired && <span>This field is required</span>}
+                <input type="submit" />
+              </form>
+              </div>
+
             <Button className={styles.customButton}>Save</Button>
       </Box>
     </Box>
