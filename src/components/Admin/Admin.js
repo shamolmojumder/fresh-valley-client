@@ -13,17 +13,15 @@ import ListItemText from '@mui/material/ListItemText';
 import EditIcon from '@mui/icons-material/Edit';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import styles from './Admin.module.css'
-import Stack from '@mui/material/Stack';
-import { Button } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import { Button } from "@mui/material";
+import AddProduct from '../AddProduct/AddProduct'
+
 
 const drawerWidth = 240;
 
-const Input = styled('input')({
-    display: 'none',
-  });
+
 const Admin = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = data => {
@@ -104,27 +102,8 @@ const Admin = () => {
         sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
       >
         <Toolbar />
-            {/* <div className={styles.background}>
-                <h5>Product Name</h5>
-                <input className={styles.input} type="text" placeholder="Name" />
-
-                <h5>Weight</h5>
-                <input className={styles.input} type="text" placeholder="Name" />
-
-                <h5>Add Price</h5>
-                <input className={styles.input} type="text" placeholder="price" />
-
-                <h5>Add Product</h5>
-                <Stack direction="row" alignItems="center" spacing={2}>
-                    <label htmlFor="contained-button-file">
-                        <Input accept="image/*" id="contained-button-file" multiple type="file" />
-                        <Button className={styles.customButton} variant="outlined" component="span">
-                             Upload
-                        </Button>
-                    </label>
-                </Stack>
-            </div> */}
-              <div className="form">
+                <AddProduct/>
+              {/* <div className="form">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <input name="name"  defaultValue="" placeholder="product name" {...register("name")} />
                 <br />
@@ -135,9 +114,9 @@ const Admin = () => {
                 {errors.exampleRequired && <span>This field is required</span>}
                 <input type="submit" />
               </form>
-              </div>
+              </div> */}
 
-            <Button className={styles.customButton}>Save</Button>
+            {/* <Button className={styles.customButton}>Save</Button> */}
       </Box>
     </Box>
     );

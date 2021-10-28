@@ -17,3 +17,11 @@
     display: flex;
     justify-content: space-around;
 }
+
+.display{
+    display: inline-block;
+    width: 25%;
+    margin: 25px;
+    padding: 25px;
+    height: 300px;
+}

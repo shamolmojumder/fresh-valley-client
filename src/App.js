@@ -10,6 +10,8 @@ import Header from './components/Header/Header';
 import Login from './components/Login/Login';
 import NotFound from './components/NotFound/NotFound'
 import Home from './components/Home/Home';
+import Tables from './components/Tables/Tables';
+import ProductList from './components/ProductList/ProductList';
 
 function App() {
   return (
@@ -27,6 +29,12 @@ function App() {
         </Route>
         <Route path="/login">
             <Login></Login>
+        </Route>
+        <Route path="/productList">
+          <ProductList></ProductList>  
+        </Route>
+        <Route path="/manage">
+          <Tables></Tables>
         </Route>
  
         <Route path="*">

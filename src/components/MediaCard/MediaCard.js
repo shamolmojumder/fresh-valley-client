@@ -12,23 +12,25 @@ import {
 
   
 
-export default function MediaCard() {
+export default function MediaCard(props) {
+  
+  const {name,price,imageUrl}=props.pd;
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card className={styles.display} sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         height="140"
-        src="https://miro.medium.com/max/1400/1*DeBkx8vjbumpCO-ZkPE9Cw.png"
+        src={imageUrl}
         alt="green iguana"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {name}
         </Typography>
       </CardContent>
       <CardActions className={styles.flex}>
       <Typography gutterBottom variant="h5" component="div">
-          $295
+          ${price}
         </Typography>
         <NavBtn>
           <NavBtnLink to='/buynow'>Buy Now</NavBtnLink>
