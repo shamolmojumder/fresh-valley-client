@@ -103,6 +103,8 @@ const Admin = () => {
       >
         <Toolbar />
                 <AddProduct/>
+
+                
               {/* <div className="form">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <input name="name"  defaultValue="" placeholder="product name" {...register("name")} />

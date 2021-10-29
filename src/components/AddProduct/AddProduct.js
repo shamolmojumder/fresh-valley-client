@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
 
 const Input = styled('input')({
     display: 'none',
@@ -49,24 +50,34 @@ const AddProduct = () => {
     const [imageUrl,setImageUrl]=useState(null)
     return (
         <div>
-             <form onSubmit={handleSubmit(onSubmit)}>
-             <div className={styles.background}>
-                <h5>Product Name</h5>
-                <input className={styles.input} name="name"  defaultValue="" placeholder="product name" {...register("name")}  />
+           <form onSubmit={handleSubmit(onSubmit)}>
+             <Box sx={{ flexGrow: 1 }}>
+             <Grid container spacing={2}>
+              <Grid item xs={6}>
+              <h5>Product Name</h5>
+                <input type="text" name="name"  defaultValue="" placeholder="product name" {...register("name")}  required/>
+              </Grid>
+              <Grid item xs={6}>
+              <h5>Weight</h5>
+                <input type="text" defaultValue="" placeholder="weight" {...register("weight")} required/>
+              </Grid>
+              <Grid item xs={6}>
+              <h5>Add Price</h5>
+                <input type="text" placeholder="price" {...register("price")} required/>
+              </Grid>
+              <Grid item xs={6}>
+              <h5>Add Product</h5>
+                <input type="file" name="" id="" className={styles.submitbtn} onChange={handleImageUpload} required/>
+              </Grid>
+              <Grid item xs={12}>
+           
+              <input type="submit" id="" value="Upload Product" />
+              </Grid>
+             </Grid>
 
-                <h5>Weight</h5>
-                <input className={styles.input} defaultValue="" placeholder="weight" {...register("weight")}/>
-
-                <h5>Add Price</h5>
-                <input className={styles.input} type="text" placeholder="price" {...register("price")} />
-
-                <h5>Add Product</h5>
-                <input type="file" name="" id="" onChange={handleImageUpload} />
-                <input type="submit" value="Upload Product" />
-            </div>
-    
-            </form>
-   
+             </Box>
+             </form>
+      
         </div>
     );
 };
