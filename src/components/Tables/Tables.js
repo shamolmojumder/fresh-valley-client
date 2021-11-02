@@ -27,10 +27,13 @@ const Tables = (props) => {
           .then(res=>res.json())
           .then(data=>{
               setManageProductList(data)
-              console.log(manageProductList);
+
           })
       },[])
-    console.log(props);
+      console.log(manageProductList);
+    const deleteProduct=(id)=>{
+      console.log(id);
+    }
     // const {name}=props.mpl;
     return (
         <TableContainer component={Paper}>
@@ -58,7 +61,7 @@ const Tables = (props) => {
                 <TableCell align="right">{mpl.weight}</TableCell>
                 <TableCell align="right">{mpl.price}</TableCell>
                 <TableCell align="right">{mpl.name}</TableCell>
-                <DeleteIcon />
+                <DeleteIcon onClick={()=>deleteProduct(manageProductList._id)} />
               </TableRow>
             ))}
           </TableBody>

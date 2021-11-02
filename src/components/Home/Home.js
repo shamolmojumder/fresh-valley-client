@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import CircularStatic from '../CircularProgressWithLabel/CircularProgressWithLabel';
 import MediaCard from '../MediaCard/MediaCard';
 import styles from './Home.module.css'
+import CircularProgressWithLabel from '../CircularProgressWithLabel/CircularProgressWithLabel'
 const Home = () => {
   const [products,setProducts]=useState([]);
   useEffect(()=>{
@@ -11,8 +13,10 @@ const Home = () => {
     return (
         <div className={styles.flex}>
           {
-            products.map(pd=><MediaCard pd={pd} key={pd._id}></MediaCard>)
+            products.length===0 && <CircularProgressWithLabel></CircularProgressWithLabel>
           }
+           {products.map(pd=><MediaCard pd={pd} key={pd._id}></MediaCard>)}
+         
         </div>
     );
 };
