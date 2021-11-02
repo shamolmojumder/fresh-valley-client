@@ -33,6 +33,17 @@ const Tables = (props) => {
       console.log(manageProductList);
     const deleteProduct=(id)=>{
       console.log(id);
+      fetch(`/delete/${id}`,{
+        method:'DELETE'
+      })
+      .then(res=>res.json())
+      .then(result=>{
+        // event.target.parentNode
+        if (result) {
+          console.log(result);
+      }
+        
+      })
     }
     // const {name}=props.mpl;
     return (
@@ -61,7 +72,7 @@ const Tables = (props) => {
                 <TableCell align="right">{mpl.weight}</TableCell>
                 <TableCell align="right">{mpl.price}</TableCell>
                 <TableCell align="right">{mpl.name}</TableCell>
-                <DeleteIcon onClick={()=>deleteProduct(manageProductList._id)} />
+                <DeleteIcon onClick={()=>deleteProduct(mpl._id)} />
               </TableRow>
             ))}
           </TableBody>
