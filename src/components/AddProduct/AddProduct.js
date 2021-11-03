@@ -13,6 +13,9 @@ const Input = styled('input')({
     display: 'none',
   });
 const AddProduct = () => {
+  function refreshPage() {
+    window.location.reload(false);
+  }
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
       const eventData={
@@ -29,7 +32,10 @@ const AddProduct = () => {
         },
         body:JSON.stringify(eventData)
       })
-      .then(res=>console.log("server side response"))
+      .then(res=>{
+        console.log("server side response")
+        refreshPage()
+      })
     }
     
     // console.log(watch("example")); // watch input value by passing the name of it

@@ -33,17 +33,18 @@ const Tables = (props) => {
       console.log(manageProductList);
     const deleteProduct=(id)=>{
       console.log(id);
-      fetch(`/delete/${id}`,{
+      fetch(`http://localhost:5055/delete/${id}`,{
         method:'DELETE'
       })
       .then(res=>res.json())
       .then(result=>{
-        // event.target.parentNode
-        if (result) {
-          console.log(result);
-      }
-        
+        console.log("delete successfully");   
+        refreshPage()
       })
+    }
+
+    function refreshPage() {
+      window.location.reload(false);
     }
     // const {name}=props.mpl;
     return (
