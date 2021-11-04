@@ -30,7 +30,7 @@ export default function MediaCard(props) {
       </CardContent>
       <CardActions className={styles.flex}>
       <Typography gutterBottom variant="h5" component="div">
-          ${price}
+           ৳ - {price}
         </Typography>
         <NavBtn>
           <NavBtnLink to='/buynow'>Buy Now</NavBtnLink>
