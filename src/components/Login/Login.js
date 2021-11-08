@@ -31,7 +31,7 @@ const Login = () => {
             var token = credential.accessToken;
             // The signed-in user info.
             var user = result.user;
-            console.table(user);
+            console.log(user);
             // ...
         }).catch((error) => {
             // Handle Errors here.

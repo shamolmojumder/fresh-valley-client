@@ -12,36 +12,43 @@ import NotFound from './components/NotFound/NotFound'
 import Home from './components/Home/Home';
 import Tables from './components/Tables/Tables';
 import ProductList from './components/ProductList/ProductList';
+import { useContext } from 'react';
+import { createContext } from 'react';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
+export const UserContext = createContext();
 function App() {
+  const [loggedInUser, setLoggedInUser] = useContext({});
   return (
-    <Router>
-      <Header></Header>
-      <Switch>
-      <Route exact path="/">
-          <Home></Home>
-        </Route>
-        <Route path="/home">
-          <Home></Home>
-        </Route>
-        <Route path="/admin">
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+      <Router>
+        <Header></Header>
+        <Switch>
+          <Route exact path="/">
+            <Home></Home>
+          </Route>
+          <Route path="/home">
+            <Home></Home>
+          </Route>
+          <Route path="/admin">
             <Admin></Admin>
-        </Route>
-        <Route path="/login">
+          </Route>
+          <Route path="/login">
             <Login></Login>
-        </Route>
-        <Route path="/productList">
-          <ProductList></ProductList>  
-        </Route>
-        <Route path="/manage">
-          <Tables></Tables>
-        </Route>
- 
-        <Route path="*">
-            <NotFound/>
-        </Route>
-      </Switch>
-    </Router>
+          </Route>
+          <Route path="/productList">
+            <ProductList></ProductList>
+          </Route>
+          <PrivateRoute path="/manage">
+            <Tables></Tables>
+          </PrivateRoute>
+          
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
+      </Router>
+    </UserContext.Provider>
   );
 }
 
