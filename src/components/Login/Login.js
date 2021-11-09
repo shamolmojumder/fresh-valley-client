@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from "./Login.module.css";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
@@ -8,6 +8,7 @@ import firebaseConfig from './firebase.Config';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import { UserContext } from '../../App';
 
 
 
@@ -15,7 +16,7 @@ firebase.initializeApp(firebaseConfig);
 
 
 const Login = () => {
-
+    const [loggedInUser, setLoggedInUser]=useContext(UserContext)
     const facebook=()=>{
         console.log("facebook");
     }
@@ -31,6 +32,7 @@ const Login = () => {
             var token = credential.accessToken;
             // The signed-in user info.
             var user = result.user;
+            setLoggedInUser(user)
             console.log(user);
             // ...
         }).catch((error) => {

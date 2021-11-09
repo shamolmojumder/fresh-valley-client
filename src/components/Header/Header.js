@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Nav,
   NavLink,
@@ -8,8 +8,11 @@ import {
   NavBtnLink
 } from './NavbarElements';
 import styles from './Header.module.css';
-
+import { UserContext } from '../../App';
+import DeleteIcon from '@mui/icons-material/Delete';
 const Header = () => {
+  const [loggedInUser, setLoggedInUser] =useContext(UserContext);
+  
     return (
         <>
       <Nav>
@@ -34,7 +37,9 @@ const Header = () => {
           {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
         <NavBtn>
-          <NavBtnLink className={styles.login} to='/login'>Login</NavBtnLink>
+         {
+           loggedInUser.email?loggedInUser.displayName: <NavBtnLink className={styles.login} to='/login'>Login</NavBtnLink>
+         }
         </NavBtn>
       </Nav>
     </>
