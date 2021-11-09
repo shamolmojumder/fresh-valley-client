@@ -9,6 +9,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { UserContext } from '../../App';
+import { useHistory, useLocation } from 'react-router';
 
 
 
@@ -16,7 +17,11 @@ firebase.initializeApp(firebaseConfig);
 
 
 const Login = () => {
-    const [loggedInUser, setLoggedInUser]=useContext(UserContext)
+    const [loggedInUser, setLoggedInUser]=useContext(UserContext);
+    let history = useHistory();
+    let location = useLocation();
+    let { from } = location.state || { from: { pathname: "/" } };
+
     const facebook=()=>{
         console.log("facebook");
     }
@@ -34,6 +39,7 @@ const Login = () => {
             var user = result.user;
             setLoggedInUser(user)
             console.log(user);
+            history.replace(from);
             // ...
         }).catch((error) => {
             // Handle Errors here.
